@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { IProduct } from '../Home-Interfaces/IProduct';
 
 @Injectable({
@@ -17,11 +17,21 @@ export class HomePageService {
   {
    
   }
-
+//
   //Getting the Products from backend API
   getProducts():Observable<IProduct[]>{
-    let tempVar = this.http.get<IProduct[]>('https://quickkart-backend.azurewebsites.net/api/home/getproducts')
+    let tempVar = this.http.get<IProduct[]>('https://localhost:500/api/home/getproducts')
     console.log(tempVar)
+    return tempVar
+  }
+
+  MakePayment(CardNumber1:string,cvv1:string,ex:string,pid:number,cost:number):Observable<boolean>{
+
+    var pay:Payment
+    pay={cardNumber:CardNumber1,CVV:cvv1,Expiry:ex,ProdCost:cost,ProdID:pid}
+    console.log(pay)
+
+    let tempVar = this.http.post<boolean>('http://localhost:7181/api/PaymentFunction',pay)
     return tempVar
   }
 
@@ -29,7 +39,7 @@ export class HomePageService {
   
     console.log(emailID)
 
-    let tempVar = this.http.get<boolean>('https://quickkart-backend.azurewebsites.net/api/customer/AddNewSubscriber?emailID='+emailID)
+    let tempVar = this.http.get<boolean>('https://quickcart-microservice.azurewebsites.net/api/SubscribeFunction?code=pIOIb80woJnaC8N77yQl1nSLxlDAvSa5mw9rli414zaoAzFuF3cBhA==&emailID='+emailID)
     console.log(tempVar)
     return tempVar
   }
@@ -40,14 +50,26 @@ export class HomePageService {
     var user:User
     user={emailID:userEmailID, password:userPassword,usertype:type};
     console.log(user)
-    let result=this.http.post<number>('https://quickkart-backend.azurewebsites.net/api/LoginFunction?code=kDxJUURhVektI3q0G7_k0zea7O9yKG0FG-VfWfLqbLzpAzFuZJP6ww==',user)
+
+    let result=this.http.post<number>('https://loginfa2w8388.azurewebsites.net/api/LoginFunction?code=Us_Hrz1uuqrbwvt34_sdVfzNY5pp4VQjUC26D8gAbSQAAzFu_fG_9w%3D%3D',user)
     return result
 
   }
 
-  
+  public uploadImage(image: File): Observable<Response>{
+    const formData = new FormData();
+   
+    formData.append('image', image);
+    console.log(formData)
+    let result=this.http.post<Response>('https://localhost:5001/api/admin/upload',formData).pipe(catchError(this.errorHandler))
+    console.log(result)
+    return result
+  }
 
-  
+  errorHandler(error: HttpErrorResponse) {
+    console.log(error);
+    return throwError(error.message|| "server error")
+  }
 }
 
 export class User{
@@ -56,5 +78,15 @@ export class User{
   password:string='';
   usertype:string='';
 
+
+}
+
+export class Payment{
+
+  cardNumber:string='';
+  CVV:string='';
+  Expiry:string='';
+  ProdCost:number=0;
+  ProdID:number=0;
 
 }

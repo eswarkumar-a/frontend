@@ -51,7 +51,7 @@ export class HomePageService {
     user={emailID:userEmailID, password:userPassword,usertype:type};
     console.log(user)
 
-    let result=this.http.post<number>('https://groupafunction.azurewebsites.net/api/LoginFunction?code=L19UDN_DhsasHK3oQYPbh8om7Xck99x95uegdYOvaozxAzFu4YI_9Q==',user)
+    let result=this.http.post<number>('https://quickkart-webservice20250509034753-b3c5hybhfkbygegp.canadacentral-01.azurewebsites.net/api/home/getproducts',user)
     return result
 
   }

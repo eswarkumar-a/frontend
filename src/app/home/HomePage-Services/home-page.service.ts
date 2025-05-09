@@ -51,7 +51,7 @@ export class HomePageService {
     user={emailID:userEmailID, password:userPassword,usertype:type};
     console.log(user)
 
-    let result=this.http.post<number>('https://loginfa2w8388.azurewebsites.net/api/LoginFunction?code=Us_Hrz1uuqrbwvt34_sdVfzNY5pp4VQjUC26D8gAbSQAAzFu_fG_9w%3D%3D',user)
+    let result=this.http.post<number>('https://groupafunction.azurewebsites.net/api/LoginFunction?code=L19UDN_DhsasHK3oQYPbh8om7Xck99x95uegdYOvaozxAzFu4YI_9Q==',user)
     return result
 
   }

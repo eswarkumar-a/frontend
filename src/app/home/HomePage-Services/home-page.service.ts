@@ -24,7 +24,6 @@ export class HomePageService {
     console.log(tempVar)
     return tempVar
   }
-https://groupafunction.azurewebsites.net/api/LoginFunction?code=lp97HGBnsvF3bNOu8kePLIzqNUC8uIOrs1xZnZPQdCieAzFu_imXjQ==
   MakePayment(CardNumber1:string,cvv1:string,ex:string,pid:number,cost:number):Observable<boolean>{
 
     var pay:Payment

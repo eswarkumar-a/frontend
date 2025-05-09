@@ -24,7 +24,7 @@ export class HomePageService {
     console.log(tempVar)
     return tempVar
   }
-
+https://groupafunction.azurewebsites.net/api/LoginFunction?code=lp97HGBnsvF3bNOu8kePLIzqNUC8uIOrs1xZnZPQdCieAzFu_imXjQ==
   MakePayment(CardNumber1:string,cvv1:string,ex:string,pid:number,cost:number):Observable<boolean>{
 
     var pay:Payment
@@ -51,7 +51,7 @@ export class HomePageService {
     user={emailID:userEmailID, password:userPassword,usertype:type};
     console.log(user)
 
-    let result=this.http.post<number>('https://quickkart-webservice20250509034753-b3c5hybhfkbygegp.canadacentral-01.azurewebsites.net/api/home/getproducts',user)
+    let result=this.http.post<number>('https://groupafunction.azurewebsites.net/api/LoginFunction?code=lp97HGBnsvF3bNOu8kePLIzqNUC8uIOrs1xZnZPQdCieAzFu_imXjQ==',user)
     return result
 
   }

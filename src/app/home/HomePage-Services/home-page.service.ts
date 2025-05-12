@@ -38,7 +38,7 @@ export class HomePageService {
   
     console.log(emailID)
 
-    let tempVar = this.http.get<boolean>('https://quickcart-microservice.azurewebsites.net/api/SubscribeFunction?code=pIOIb80woJnaC8N77yQl1nSLxlDAvSa5mw9rli414zaoAzFuF3cBhA==&emailID='+emailID)
+    let tempVar = this.http.get<boolean>('https://quickkart-webservice20250509034753-b3c5hybhfkbygegp.canadacentral-01.azurewebsites.net/api/SubscribeFunction?code=pIOIb80woJnaC8N77yQl1nSLxlDAvSa5mw9rli414zaoAzFuF3cBhA==&emailID='+emailID)
     console.log(tempVar)
     return tempVar
   }

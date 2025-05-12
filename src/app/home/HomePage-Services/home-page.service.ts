@@ -20,7 +20,7 @@ export class HomePageService {
 //
   //Getting the Products from backend API
   getProducts():Observable<IProduct[]>{
-    let tempVar = this.http.get<IProduct[]>('https://quickkart-webservice20250509034753-b3c5hybhfkbygegp.canadacentral-01.azurewebsites.net/api/home/getproducts')
+    let tempVar = this.http.get<IProduct[]>('https://groupaapiii.azure-api.net/api/home/getproducts')
     console.log(tempVar)
     return tempVar
   }
